@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Eye Bookshop</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+	<body>
+
+	<div id = theGame> 
+	<div id = psychicElements>
+<!-- The Psychic Game Header
+	& Image -->
+	<h1>Do you know what I'm thinking?</h1>
+	<img src = "assets/images/crystalball.gif" alt = "Witchy women over her crystal ball gif">
+	<h2> Guess A Letter (A-Z)</h2></div>
+
+	</div>
+	
+
+
+	<!-- Stuff It Seems We Need -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+  		<script type="text/javascript">
+
+  		// happens on page load
+
+
+  			// wins = # of times user is winning <- will be a counter
+var wins = 0;
+	// losses = # of times user has lost <- will be a counter
+var losses = 0;
+	// guessesLeft = # of guesses left (7 each game)<- will be a counter
+var guessesLeft = 7;
+
+	// computerLetters = all the letters the computer can choose randomly
+var computerLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	// computerChoice = the computer choosing a letter from the above array
+var computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+
+
+// Determines which key was pressed.
+ document.onkeyup = function(event) {
+ 	
+
+
+ 	var userGuess = event.key;
+
+
+	// <!-- JavaScript variables for: -->
+	// Telling the game what makes a win and what makes a loss
+	// + when the player wins - increase the wins counter and alert that the game will be starting over + starting the guessesLeft counter back to 7
+if (userGuess === computerChoice) {
+	wins++;
+	alert('Wow. You actually won - Let\'s Play Again!');
+	guessesLeft = 7;
+	computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+	}
+else if (userGuess !== computerChoice) {
+		guessesLeft--;
+	}
+
+	// Telling the game how the guessestLeft counter works + making an alert for when the player loses and restarting the guessest left counter.
+if (guessesLeft === 0) {
+	losses++;
+	alert('Wow. You Lost - Let\'s Try Again!');
+	guessesLeft = 7;
+	computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+
+}
+
+	// Making a Variable to hold all of our html (things we want tracked)
+	var html =
+	"<h1>Do you know what I'm thinking?</h1>" +
+	"<img src = 'assets/images/crystalball.gif' alt = 'Witchy women over her crystal ball gif'>" +
+	"<h2> Guess A Letter (A-Z)</h2>" +
+	"<h3> Guesses Left: " + guessesLeft + "</h3>" +
+	"<p> Your guesses so far: " + userGuess +  "</p>" +
+	"<p> COMPUTERS CHOICE " + computerChoice +  "</p>" +
+	"<p> Wins: " + wins + "</p>" +
+	"<p> Losses: " + losses + "</p>" ;
+
+
+
+	 // Throwing the HTML we just made into the game's html div (i don't know what queryselector means)
+			document.querySelector("#theGame").innerHTML = html;
+			
+
+
+
+
+
+
+
+
+
+      
+    };
+
+
+
+</script>
+</body>
+
+</html>
